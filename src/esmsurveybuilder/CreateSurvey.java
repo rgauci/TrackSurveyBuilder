@@ -250,12 +250,13 @@ public class CreateSurvey {
         
         // create survey file
         String json = SurveyHelper.toJson(questions, 
-                "C:\\track\\survey_json.txt");
-        
+                Config.OutputDirectory + "survey_json.txt");
+
         // create SQL script and save to file
         DatabaseHelper.createDatabaseSqlFile(questions,
-                "username", "password", 
-                "C:\\track\\create_track_db.sql");
+                Config.ExternalDatabaseUsername,
+                Config.ExternalDatabasePassword,
+                Config.OutputDirectory + "create_track_db.sql");
     }
     
     /**
@@ -270,15 +271,15 @@ public class CreateSurvey {
         int questionNum = currentQuestionNum + 1;
         
         String requlationStrategiesTitle = "Regulation Strategies";
-        String subTitle = "In relation to feeling " + emotionReported + ".";
-        String questionPrefix = "How much are you:";
+        //String subTitle = "In relation to feeling " + emotionReported + ".";
+        String questionPrefix = "In relation to feeling <b>" + emotionReported + "</b>, how much are you:";
         String colPrefix = "Regulation_" + emotionReported + "_";
         
         ArrayList<TrackQuestion> questions = new ArrayList<>();
         
         LikertScaleQuestion question10 = new LikertScaleQuestion(questionNum, colPrefix + "ThinkingDifferently", false, likert_options);
         //question10.setTitle(requlationStrategiesTitle);
-        question10.setSubTitle(subTitle);
+        //question10.setSubTitle(subTitle);
         question10.setQuestionPrefix(questionPrefix);
         question10.setQuestionText("Thinking about a situation differently?");
         questions.add(question10);
@@ -286,7 +287,7 @@ public class CreateSurvey {
         
         LikertScaleQuestion question11 = new LikertScaleQuestion(questionNum, colPrefix + "CalmingYourself", false, likert_options);
         //question11.setTitle(requlationStrategiesTitle);
-        question11.setSubTitle(subTitle);
+        //question11.setSubTitle(subTitle);
         question11.setQuestionPrefix(questionPrefix);
         question11.setQuestionText("Trying to calm yourself by taking deep breaths or relaxing your muscles?");
         questions.add(question11);
@@ -294,7 +295,7 @@ public class CreateSurvey {
         
         LikertScaleQuestion question12 = new LikertScaleQuestion(questionNum, colPrefix + "Talking", false, likert_options);
         //question12.setTitle(requlationStrategiesTitle);
-        question12.setSubTitle(subTitle);
+        //question12.setSubTitle(subTitle);
         question12.setQuestionPrefix(questionPrefix);
         question12.setQuestionText("Talking about your feelings and reactions with others?");
         questions.add(question12);
@@ -302,7 +303,7 @@ public class CreateSurvey {
         
         LikertScaleQuestion question13 = new LikertScaleQuestion(questionNum, colPrefix + "HidingEmotions", false, likert_options);
         //question13.setTitle(requlationStrategiesTitle);
-        question13.setSubTitle(subTitle);
+        //question13.setSubTitle(subTitle);
         question13.setQuestionPrefix(questionPrefix);
         question13.setQuestionText("Trying not to show your feelings on the outside?");
         questions.add(question13);
@@ -310,7 +311,7 @@ public class CreateSurvey {
         
         LikertScaleQuestion question14 = new LikertScaleQuestion(questionNum, colPrefix + "TurningAttention", false, likert_options);
         //question14.setTitle(requlationStrategiesTitle);
-        question14.setSubTitle(subTitle);
+        //question14.setSubTitle(subTitle);
         question14.setQuestionPrefix(questionPrefix);
         question14.setQuestionText("Turning your attention away from what is making you feel emotional?");
         questions.add(question14);
@@ -318,7 +319,7 @@ public class CreateSurvey {
         
         LikertScaleQuestion question15 = new LikertScaleQuestion(questionNum, colPrefix + "ThinkingAboutEmotions", false, likert_options);
         //question15.setTitle(requlationStrategiesTitle);
-        question15.setSubTitle(subTitle);
+        //question15.setSubTitle(subTitle);
         question15.setQuestionPrefix(questionPrefix);
         question15.setQuestionText("Thinking about your feelings over and over?");
         questions.add(question15);
